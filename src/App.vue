@@ -1,78 +1,76 @@
 <script setup>
 import { ref } from "vue";
 const carrinho = ref(true);
-const produtos = [
+const produtos = ref([
     {
         id: 1,
         titulo: 'Chain of Iron: Volume 2',
-        bolleano: false,
-        resenha: 'Descrição breve 1',
+        autor: 'Cassandra Clare',
+        booleano: false,
         preco: 23.24,
-        capa: 'https://placehold.co/600x400.png',
+        capa: '/public/97819821858242.png',
     },
     {
         id: 2,
         titulo: 'Chain of Thorns',
-        bolleano: false,
-        resenha: 'Descrição breve 2',
+        autor: 'Cassandra Clare',
+        booleano: false,
         preco: 23.24,
-        capa: 'https://placehold.co/600x400.png',
+        capa: '/public/97819821858242(1).png',
     },
     {
         id: 3,
         titulo: 'City of Fallen Angels',
-        bolleano: false,
-        resenha: 'Descrição breve 3',
+        autor: 'Cassandra Clare',
+        booleano: false,
         preco: 13.94,
-        capa: 'https://placehold.co/600x400.png',
+        capa: '/public/97819821858242(2).png',
     },
     {
         id: 4,
         titulo: 'Nona the Ninth',
-        bolleano: false,
-        resenha: 'Descrição breve 4',
+        autor: 'Cassandra Clare',
+        booleano: false,
         preco: 16.84,
-        capa: 'https://placehold.co/600x400.png',
+        capa: '/public/97819821858242(3).png',
     },
     {
         id: 5,
         titulo: 'Harlem Shuffle',
-        bolleano: false,
-        resenha: 'Descrição breve 5',
+        autor: 'Colson Whitehead',
+        booleano: false,
         preco: 26.92,
-        capa: 'https://placehold.co/600x400.png',
+        capa: '/public/97819821858242(4).png',
     },
     {
         id: 6,
         titulo: 'Two Old Women',
-        bolleano: false,
-        resenha: 'Descrição breve 5',
+        autor: 'Velma Wallis',
+        booleano: false,
         preco: 13.95,
-        capa: 'https://placehold.co/600x400.png',
+        capa: '/public/97819821858242(5).png',
     },
     {
         id: 7,
         titulo: 'Carrie Soto Is Back',
-        bolleano: false,
-        resenha: 'Descrição breve 5',
+        autor: 'Taylor Jenkins Reid',
+        booleano: false,
         preco: 26.04,
-        capa: 'https://placehold.co/600x400.png',
+        capa: '/public/97819821858242(6).png',
     },
     {
         id: 8,
         titulo: 'Book Lovers',
-        bolleano: false,
-        resenha: 'Descrição breve 5',
+        autor: 'Emily Henry',
+        booleano: false,
         preco: 15.81,
-        capa: 'https://placehold.co/600x400.png',
-    }
+        capa: '/public/97819821858242(7).png',
+    },
+    
 
 
 
-];
-function booleano(livro) {
-    return 
-}
+]);
 
 
 </script>
@@ -152,67 +150,17 @@ function booleano(livro) {
 
             <section class="terceiro">
                 <h2>Lançamentos</h2>
+
                 <div class="four">
-                    <div>
-                        <img src="/public/97819821858242.png" alt="1º Livro">
-                        <h3>Chain of Iron: Volume 2</h3>
-                        <p>Cassandra Clare</p>
-                        <p>R$23.24 </p>
-                        <button @click="produtos[0].bolleano = !produtos[0].bolleano"><span
-                                class="fa-solid fa-cart-shopping"></span>Comprar</button>
-                    </div>
-                    <div>
-                        <img src="/public/97819821858242(1).png" alt="2º Livro">
-                        <h3>Chain of Thorns</h3>
-                        <p>Cassandra Clare</p>
-                        <p>R$23.24 <span class="fa-regular fa-heart"></span></p>
-                        <button><span class="fa-solid fa-cart-shopping"></span>Comprar</button>
-                    </div>
-                    <div>
-                        <img src="/public/97819821858242(2).png" alt="3º Livro">
-                        <h3>City of Fallen Angels</h3>
-                        <p>Cassandra Clare</p>
-                        <p>R$13.94 <span class="fa-regular fa-heart"></span></p>
-                        <button><span class="fa-solid fa-cart-shopping"></span>Comprar</button>
-                    </div>
-                    <div>
-                        <img src="/public/97819821858242(3).png" alt="4º Livro">
-                        <h3>Nona the Ninth</h3>
-                        <p>Cassandra Clare</p>
-                        <p>R$16.84 <span class="fa-regular fa-heart"></span></p>
-                        <button><span class="fa-solid fa-cart-shopping"></span>Comprar</button>
+                    <div  v-for="book in produtos" :key="book.id">
+                    <img :src="book.capa" :alt="book.titulo">
+                        <h3>{{ book.titulo }}</h3>
+                        <p>{{ book.autor }}</p>
+                        <p>{{ book.preco }} <span class="fa-regular fa-heart"></span></p>
+                        <button @click="book.booleano = !book.booleano"><span class="fa-solid fa-cart-shopping"></span>Comprar</button>
                     </div>
                 </div>
-                <div class="four">
-                    <div>
-                        <img src="/public/97819821858242(4).png" alt="5º Livro">
-                        <h3>Harlem Shuffle</h3>
-                        <p>Colson Whitehead</p>
-                        <p>R$26.92 </p>
-                        <button><span class="fa-solid fa-cart-shopping"></span>Comprar</button>
-                    </div>
-                    <div>
-                        <img src="/public/97819821858242(5).png" alt="6º Livro">
-                        <h3>Two Old Women</h3>
-                        <p>Velma Wallis</p>
-                        <p>R$13.95 <span class="fa-regular fa-heart"></span></p>
-                        <button><span class="fa-solid fa-cart-shopping"></span>Comprar</button>
-                    </div>
-                    <div>
-                        <img src="/public/97819821858242(6).png" alt="7º Livro">
-                        <h3>Carrie Soto Is Back</h3>
-                        <p>Taylor Jenkins Reid</p>
-                        <p>R$26.04 <span class="fa-regular fa-heart"></span></p>
-                        <button><span class="fa-solid fa-cart-shopping"></span>Comprar</button>
-                    </div>
-                    <div>
-                        <img src="/public/97819821858242(7).png" alt="8º Livro">
-                        <h3>Book Lovers</h3>
-                        <p>Emily Henry</p>
-                        <p>R$15.81 <span class="fa-regular fa-heart"></span></p>
-                        <button><span class="fa-solid fa-cart-shopping"></span>Comprar</button>
-                    </div>
-                </div>
+
             </section>
             <section class="carrinho" v-if="carrinho">
                 <div class="principal-carrinho">
@@ -232,7 +180,7 @@ function booleano(livro) {
                 </div>
 
                 <div v-for="livro in produtos" :key="livro.id" class="livros">
-                    <div>
+                    <div  v-if="livro.booleano">
                         <div class="img">
                             <img :src="livro.capa" :alt="livro.titulo">
                         </div>
@@ -243,6 +191,7 @@ function booleano(livro) {
                                 <p>R$ {{ livro.preco.toFixed(2) }}</p>
                             </div>
                         </div>
+                        <hr>
                     </div>
                 </div>
                     <div class="voltar">
@@ -322,6 +271,7 @@ a {
 body {
     overflow-x: hidden;
     margin: 0;
+    background-color: #FFFFFF;
 }
 
 /*=============================================
@@ -444,6 +394,7 @@ section.primeira div p:first-child {
     width: 16%;
     font-size: 14px;
     text-align: center;
+    color: #27AE60;
 }
 
 section.primeira div h1 {
@@ -469,14 +420,10 @@ section.primeira div button {
 }
 
 
-section.primeira div img {
-    position: relative;
-}
-
 section.primeira div p:last-child {
-    position: absolute;
-    right: -15vw;
-    top: 31vw;
+    position: relative;
+    margin-left: 12vw;
+    top: -3.5vw;
 }
 
 /*=============================================
@@ -524,8 +471,9 @@ section.primeira div p:last-child {
                     Main - Parte 3
 ===============================================*/
 .four {
-    display: flex;
     justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .terceiro {
@@ -632,9 +580,10 @@ section.primeira div p:last-child {
 }
 
 .livros {
-    border-bottom: gray solid 1px;
     margin-bottom: 2vw;
+    
 }
+
 
 .separar {
     display: flex;
