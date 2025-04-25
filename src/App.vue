@@ -91,6 +91,8 @@ function diminuirquantidade(livro) {
   }
 }
 
+
+
 </script>
 
 <template>
