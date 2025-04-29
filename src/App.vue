@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from "vue";
-const carrinho = ref(true);
+const carrinho = ref(false);
 const produtos = ref([
   {
     id: 1,
@@ -78,8 +78,20 @@ const produtos = ref([
 
 
 ]);
+function favoritar(){
+  
+}
 
-const total = computed(() => produtos.value.reduce((t, p) => t + (p.booleano ? p.preco * p.quantidade : 0), 0).toFixed(2));
+const total = computed(() => {
+  let total = 0;
+  for(let item of produtos.value){
+    if(item.booleano == true){
+      total+= item.preco * item.quantidade;
+    }
+  }
+  return total.toFixed(2)
+});
+
 
 function aumentarquantidade(livro) {
   livro.quantidade++;
@@ -91,6 +103,12 @@ function diminuirquantidade(livro) {
   }
 }
 
+
+for(let items of produtos.value){
+  if(items.booleano == false){
+    items.quantidade == 1
+  }
+}
 
 
 </script>
@@ -128,9 +146,10 @@ function diminuirquantidade(livro) {
         </div>
       </nav>
     </header>
+
+
     <main>
-
-
+      <div v-if="carrinho === !true">
       <section class="primeira">
         <div>
           <p>Autor de Abril</p>
@@ -174,13 +193,14 @@ function diminuirquantidade(livro) {
             <img :src="book.capa" :alt="book.titulo">
             <h3>{{ book.titulo }}</h3>
             <p>{{ book.autor }}</p>
-            <p>{{ book.preco }} <span class="fa-regular fa-heart"></span></p>
+            <p>{{ book.preco }} <span @click="favoritar"></span></p>
             <button @click="book.booleano = !book.booleano"><span
                 class="fa-solid fa-cart-shopping"></span>Comprar</button>
           </div>
         </div>
 
       </section>
+      </div>
       <section class="carrinho" v-if="carrinho">
         <div class="principal-carrinho">
           <h1>Carrinho</h1>
@@ -218,6 +238,7 @@ function diminuirquantidade(livro) {
                 <p>{{ (livro.preco * livro.quantidade).toFixed(2).replace(".", ",") }}</p>
               </div>
               <div v-if="false">{{ produtoTotal(livro.preco) }}</div>
+              <button class="lixeira" @click="livro.booleano = !livro.booleano ; livro.quantidade = 1"><span class="fa-solid fa-trash"></span></button>
             </div>
           </div>
         </div>
@@ -589,10 +610,9 @@ section.primeira div p:last-child {
   height: 1px;
   border: none;
   background-color: #27AE60;
-  width: 75vw;
+  width: 69.46vw;
   position: relative;
-  left: -2vw;
-  margin-bottom: 2vw;
+  margin: 1vw 0 2vw 0;
 }
 
 
@@ -602,8 +622,17 @@ section.primeira div p:last-child {
 }
 
 .livros {
+  position: relative;
   border-bottom: gray solid 1px;
   margin-bottom: 2vw;
+}
+.livros .lixeira{
+  position: absolute;
+  border: none;
+  background-color: #FFFFFF;
+  font-size: 20px;
+  left: 70vw;
+  top: 2.3vw;
 }
 
 .separar {
